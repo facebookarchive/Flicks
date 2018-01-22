@@ -82,7 +82,7 @@ but only to test the unit. To compile, assuming you have a C++ compiler installe
     > c++ -o flicks_test flicks_test.cpp -std=c++14; ./flicks_test
 
 ## Makefile
-A makefile is provided that works on a Linuxy system or OSX, but not Windows. To use it:
+A makefile is provided that works on a Linux system or OSX, but not Windows. To use it:
 
     > make
 
