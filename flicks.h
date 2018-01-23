@@ -73,20 +73,20 @@ constexpr flicks k_flicks_min_time{std::numeric_limits<flicks::rep>::min()};
 
 //! Convert flicks to seconds as doubles
 //!
-inline constexpr double to_seconds(const flicks ns) {
+constexpr double to_seconds(const flicks ns) {
   return std::chrono::duration_cast<std::chrono::duration<double>>(ns).count();
 }
 
 //! Convert doubles (as seconds) to flicks
 //!
-inline constexpr flicks to_flicks(const double s) {
+constexpr flicks to_flicks(const double s) {
   return std::chrono::duration_cast<flicks>(std::chrono::duration<double>{s});
 }
 
 //! Convert a regular duration to flicks
 //!
 template <class Rep, class Period>
-inline constexpr flicks flicks_cast(
+constexpr flicks flicks_cast(
     const std::chrono::duration<Rep, Period> in_duration) {
   return std::chrono::duration_cast<flicks>(in_duration);
 }
