@@ -59,7 +59,7 @@ common film & media framerates. This was the genesis of this unit.
 ## Acknowledgements
 
 This time unit began as a technical question posted publicly on Facebook by Christopher Horvath
-in early 2017. Many people contributed and refined the unit, including Dan Goldman, Pascal Pincosy,
+in late 2016. Many people contributed and refined the unit, including Dan Goldman, Pascal Pincosy,
 Simon Eves, Kearsley Higgins, Francisco De La Torre, Benjy Feen, Eric Landreneau and Sebastian Sylwan,
 among others. Here's the post!
 https://www.facebook.com/christopher.horvath.395/posts/1157292757692660
