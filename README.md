@@ -24,25 +24,25 @@ bother - they'll be inexact in any circumstance.
 
 ## Details
 
-* 1/24 fps frame:     29400000 flicks
-* 1/25 fps frame:     28224000 flicks
-* 1/30 fps frame:     23520000 flicks
-* 1/48 fps frame:     14700000 flicks
-* 1/50 fps frame:     14112000 flicks
-* 1/60 fps frame:     11760000 flicks
-* 1/90 fps frame:     7840000 flicks
-* 1/100 fps frame:     7056000 flicks
-* 1/120 fps frame:     5880000 flicks
-* 1/8000 fps frame:     88200 flicks
-* 1/16000 fps frame:     44100 flicks
-* 1/22050 fps frame:     32000 flicks
-* 1/24000 fps frame:     29400 flicks
-* 1/32000 fps frame:     22050 flicks
-* 1/44100 fps frame:     16000 flicks
-* 1/48000 fps frame:     14700 flicks
-* 1/88200 fps frame:     8000 flicks
-* 1/96000 fps frame:     7350 flicks
-* 1/192000 fps frame:     3675 flicks
+* 24 fps frame:     29400000 flicks
+* 25 fps frame:     28224000 flicks
+* 30 fps frame:     23520000 flicks
+* 48 fps frame:     14700000 flicks
+* 50 fps frame:     14112000 flicks
+* 60 fps frame:     11760000 flicks
+* 90 fps frame:     7840000 flicks
+* 100 fps frame:     7056000 flicks
+* 120 fps frame:     5880000 flicks
+* 8000 fps frame:     88200 flicks
+* 16000 fps frame:     44100 flicks
+* 22050 fps frame:     32000 flicks
+* 24000 fps frame:     29400 flicks
+* 32000 fps frame:     22050 flicks
+* 44100 fps frame:     16000 flicks
+* 48000 fps frame:     14700 flicks
+* 88200 fps frame:     8000 flicks
+* 96000 fps frame:     7350 flicks
+* 192000 fps frame:     3675 flicks
 
 ## Motivation
 
