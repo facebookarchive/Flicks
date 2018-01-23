@@ -15,8 +15,9 @@ out of sync when doing common frame rates.
 In order to accomodate media playback, we also support some common audio sample rates
 as well. This list is not exhaustive, but covers the majority of digital audio formats.
 They are 8kHz, 16kHz, 22.05kHz, 24kHz, 32kHz, 44.1kHz, 48kHz, 88.2kHz, 96kHz, and 192kHz.
-While humans can't hear higher than 48kHz, the higher sample rates are used for working
-audio files which might later be resampled or retimed.
+While humans can't distinguish between audio materials sampled at frequencies higher 
+than 48kHz, the higher sample rates are used for working audio files which might later be
+resampled or retimed.
 
 The NTSC variations (~29.97, etc) are actually defined as 24 * 1000/1001 and 30 * 1000/1001,
 which are impossible to represent exactly in a way where 1 second is exact, so we don't
