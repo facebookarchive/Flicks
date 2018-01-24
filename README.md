@@ -23,6 +23,9 @@ We also support some common audio sample rates as well. This list is not exhaust
 the majority of digital audio formats. They are 8kHz, 16kHz, 22.05kHz, 24kHz, 32kHz, 44.1kHz, 
 48kHz, 88.2kHz, 96kHz, and 192kHz.
 
+Though it is not part of the design criteria, 144 Hz, which some newer monitors refresh at,
+does work correctly with flicks.
+
 NTSC IS NOT EXPLICITLY SUPPORTED IN ALL OF ITS SUBTLE NUANCES, BUT:
 The NTSC variations (~23.976, ~29.97, etc) are approximately defined as 24 * 1000/1001 and
 30 * 1000/1001, etc. These can be represented exactly in flicks, but 1/1000 divisions are not
