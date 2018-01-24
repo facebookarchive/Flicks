@@ -23,7 +23,7 @@ namespace util {
 //! and can in integer quantities exactly represent a single frame duration for
 //! 24 Hz, 25 Hz, 30 Hz, 48 Hz, 50 Hz, 60 Hz, 90 Hz, 100 Hz, 120 Hz, and also 1/1000 divisions of each, 
 //! as well as a single sample duration for 8 kHz, 16 kHz, 22.05 kHz, 24 kHz, 32 kHz, 44.1 kHz, 
-//! 48 kHz, 88.2 kHz, 96 kHz, and 192kHz, as well as the NTSC approximate frame durations for
+//! 48 kHz, 88.2 kHz, 96 kHz, and 192kHz, as well as the NTSC frame durations for
 //! 24 * (1000/1001) Hz, 30 * (1000/1001) Hz, 60 * (1000/1001) Hz, and 120 * (1000/1001) Hz.
 //!
 //! That above was one hell of a run-on sentence, but it's strictly and completely correct in its 
@@ -36,6 +36,9 @@ namespace util {
 //! We also support some common audio sample rates as well. This list is not exhaustive, but covers 
 //! the majority of digital audio formats. They are 8kHz, 16kHz, 22.05kHz, 24kHz, 32kHz, 44.1kHz, 
 //! 48kHz, 88.2kHz, 96kHz, and 192kHz.
+//!
+//! Though it is not part of the design criteria, 144 Hz, which some newer monitors refresh at,
+//! does work correctly with flicks.
 //! 
 //! NTSC IS NOT EXPLICITLY SUPPORTED IN ALL OF ITS SUBTLE NUANCES, BUT:
 //! The NTSC variations (~23.976, ~29.97, etc) are approximately defined as 24 * 1000/1001 and
