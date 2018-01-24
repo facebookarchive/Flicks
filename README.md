@@ -108,6 +108,13 @@ but only to test the unit. To compile, assuming you have a C++ compiler installe
 
     > c++ -o flicks_test flicks_test.cpp -std=c++14; ./flicks_test
 
+## Motivating example
+A C++ file demonstrating a simplified version of the production case in which we first encountered
+this problem is provided. It shows first a failure case, and then a fixed example using flicks. It
+is implemented using plain integers for illustration purposes.
+
+    > c++ -o flicks_motivation flicks_motivation.cpp -std=c++14; ./flicks_motivation
+
 ## Makefile
 A makefile is provided that works on a Linux-y system or OSX, but not Windows. To use it:
 
