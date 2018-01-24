@@ -10,40 +10,59 @@
 #include <cstdint>
 #include <cstring>
 #include <iostream>
+#if __cplusplus >= 201703L
+#include <numeric>
+#endif
 
 namespace derivation_of_flicks {
 
-template <int64_t measure>
-constexpr bool test_measure(const int64_t v) {
-  return (v % measure) == 0;
+#if __cplusplus > 201402L
+using std::lcm;
+#else
+template <typename T>
+T gcd(T a, T b) {
+  for (;;) {
+    if (a == 0) return b;
+    b %= a;
+    if (b == 0) return a;
+    a %= b;
+  } 
 }
 
-constexpr bool test(const int64_t v) {
-  return
-      // These are the image-frame-rate measures, all multiplied by 1000 for
-      // reasonable room in simulation substeps
-      test_measure<24000>(v) && test_measure<25000>(v) &&
-      test_measure<30000>(v) && test_measure<48000>(v) &&
-      test_measure<50000>(v) && test_measure<60000>(v) &&
-      test_measure<90000>(v) && test_measure<100000>(v) &&
-      test_measure<120000>(v) &&
-
-      // These are a set of audio sample rates
-      test_measure<8000>(v) && test_measure<16000>(v) &&
-      test_measure<22050>(v) && test_measure<24000>(v) &&
-      test_measure<32000>(v) && test_measure<44100>(v) &&
-      test_measure<48000>(v) && test_measure<88200>(v) &&
-      test_measure<96000>(v) && test_measure<192000>(v);
+template <typename A, typename B>
+std::common_type_t<A, B> lcm(A a, B b) {
+  return a / gcd<std::common_type_t<A, B>>(a, b) * b;
 }
+#endif
 
 int64_t find_biggest_denom_under_nano() {
-  for (int64_t i = 1000000000LL; i > 0; --i) {
-    if (test(i)) {
-      return i;
-    }
-  }
+  int64_t x = 1;
 
-  return 0;
+  // These are the image-frame-rate measures, all multiplied by 1000 for
+  // reasonable room in simulation substeps
+  x = lcm(x, 24000);
+  x = lcm(x, 25000);
+  x = lcm(x, 30000);
+  x = lcm(x, 48000);
+  x = lcm(x, 50000);
+  x = lcm(x, 60000);
+  x = lcm(x, 90000);
+  x = lcm(x, 100000);
+  x = lcm(x, 120000);
+
+  // These are a set of audio sample rates
+  x = lcm(x, 8000);
+  x = lcm(x, 16000);
+  x = lcm(x, 22050);
+  x = lcm(x, 24000);
+  x = lcm(x, 32000);
+  x = lcm(x, 44100);
+  x = lcm(x, 48000);
+  x = lcm(x, 88200);
+  x = lcm(x, 96000);
+  x = lcm(x, 192000);
+
+  return x <= 1000000000LL ? x : 0;
 }
 
 void print_line(int64_t measure, int64_t denom) {
