@@ -2,8 +2,9 @@
 
 ## Basics
 A flick (frame-tick) is a very small unit of time. It is 1/705600000 of a second, exactly.
+(Or 705.6 megahertz!)
 
-    1 flick = 1/705600000 second
+    1 flick = 1/705600000 second = 705.6 MHz
 
 This unit of time is the smallest time unit which is LARGER than a nanosecond,
 and can in integer quantities exactly represent a single frame duration for
@@ -12,44 +13,50 @@ This makes it suitable for use via std::chrono::duration and std::ratio for doin
 against the system high resolution clock, which is in nanoseconds, but doesn't get slightly
 out of sync when doing common frame rates.
 
-In order to accomodate media playback, we also support some common audio sample rates
-as well. This list is not exhaustive, but covers the majority of digital audio formats.
-They are 8kHz, 16kHz, 22.05kHz, 24kHz, 32kHz, 44.1kHz, 48kHz, 88.2kHz, 96kHz, and 192kHz.
-While humans can't hear higher than 48kHz, the higher sample rates are used for working
-audio files which might later be resampled or retimed.
+We also support some common audio sample rates as well. This list is not exhaustive, but covers 
+the majority of digital audio formats. They are 8kHz, 16kHz, 22.05kHz, 24kHz, 32kHz, 44.1kHz, 
+48kHz, 88.2kHz, 96kHz, and 192kHz.
 
-The NTSC variations (~23.976, ~29.97, etc) are actually defined as 24 * 1000/1001 and
-30 * 1000/1001, etc. They can be represented exactly in flicks, but 1/1000 divisions are not
-available.
+NTSC IS NOT EXPLICITLY SUPPORTED IN ALL OF ITS SUBTLE NUANCES, BUT:
+The NTSC variations (~23.976, ~29.97, etc) are approximately defined as 24 * 1000/1001 and
+30 * 1000/1001, etc. These can be represented exactly in flicks, but 1/1000 divisions are not
+available. 
+
+Many folks online have pointed out that NTSC technically has a variable frame rate,
+and that this is handled correctly in other media playback libraries such as QuickTime. 
+The goal of flicks is to provide a simple, convenient std::chrono::duration to work
+with when writing code that works with simulation and time in media, but not explicitly to 
+handle complex variable-rate playback scenarios. So we'll stick with the 1000/1001 approximations, 
+and leave it at that!
 
 ## Details
 
-* 1/24 fps frame:     29400000 flicks
-* 1/25 fps frame:     28224000 flicks
-* 1/30 fps frame:     23520000 flicks
-* 1/48 fps frame:     14700000 flicks
-* 1/50 fps frame:     14112000 flicks
-* 1/60 fps frame:     11760000 flicks
-* 1/90 fps frame:     7840000 flicks
-* 1/100 fps frame:     7056000 flicks
-* 1/120 fps frame:     5880000 flicks
-* 1/8000 fps frame:     88200 flicks
-* 1/16000 fps frame:     44100 flicks
-* 1/22050 fps frame:     32000 flicks
-* 1/24000 fps frame:     29400 flicks
-* 1/32000 fps frame:     22050 flicks
-* 1/44100 fps frame:     16000 flicks
-* 1/48000 fps frame:     14700 flicks
-* 1/88200 fps frame:     8000 flicks
-* 1/96000 fps frame:     7350 flicks
-* 1/192000 fps frame:     3675 flicks
+* 24 fps frame:     29400000 flicks
+* 25 fps frame:     28224000 flicks
+* 30 fps frame:     23520000 flicks
+* 48 fps frame:     14700000 flicks
+* 50 fps frame:     14112000 flicks
+* 60 fps frame:     11760000 flicks
+* 90 fps frame:      7840000 flicks
+* 100 fps frame:     7056000 flicks
+* 120 fps frame:     5880000 flicks
+* 8000 fps frame:      88200 flicks
+* 16000 fps frame:     44100 flicks
+* 22050 fps frame:     32000 flicks
+* 24000 fps frame:     29400 flicks
+* 32000 fps frame:     22050 flicks
+* 44100 fps frame:     16000 flicks
+* 48000 fps frame:     14700 flicks
+* 88200 fps frame:      8000 flicks
+* 96000 fps frame:      7350 flicks
+* 192000 fps frame:     3675 flicks
 
-NTSC rates:
+NTSC approximate rates:
 
-* 1001/24000 (~23.976) fps frame:    29429400 flicks
-* 1001/30000 (~29.97) fps frame:     23543520 flicks
-* 1001/60000 (~59.94) fps frame:     11771760 flicks
-* 1001/120000 (~119.88) fps frame:    5885880 flicks
+* 24 * 1000/1001 (~23.976) fps frame:    29429400 flicks
+* 30 * 1000/1001 (~29.97)  fps frame:    23543520 flicks
+* 60 * 1000/1001 (~59.94) fps frame:     11771760 flicks
+* 120 * 1000/1001 (~119.88) fps frame:    5885880 flicks
 
 ## Motivation
 
@@ -75,6 +82,19 @@ https://www.facebook.com/christopher.horvath.395/posts/1157292757692660
 Just place flicks.h wherever you install C++ header files - this is a header only library. Flicks are placed
 in the "util" namespace here, for lack of a clear alternative. It would be nice if they were in std:: someday.
 
+Note that you can just skip all of that and put this directly into your code. 
+
+```
+
+#include <chrono>
+#include <ratio>
+using flicks = std::chrono::duration<std::chrono::nanoseconds::rep, std::ratio<1, 705600000>>;
+
+```
+
+That's right! The entire library is technically just one line of code, if you don't worry about a 
+few convenience functions.
+
 ## Derivation
 A C++ file which implements a derivation of flicks is provided - it is not required to use the library,
 but only to show how it was derived. A brute-force approach was intentionally used. To compile, assuming
@@ -89,7 +109,7 @@ but only to test the unit. To compile, assuming you have a C++ compiler installe
     > c++ -o flicks_test flicks_test.cpp -std=c++14; ./flicks_test
 
 ## Makefile
-A makefile is provided that works on a Linuxy system or OSX, but not Windows. To use it:
+A makefile is provided that works on a Linux-y system or OSX, but not Windows. To use it:
 
     > make
 

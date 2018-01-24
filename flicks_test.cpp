@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2017-present, Facebook, Inc.
  * All rights reserved.
- * 
+ *
  * This source code is licensed under the BSD-style license found in the
  * LICENSE file in the root directory of this source tree.
  */
@@ -14,7 +14,6 @@
 
 namespace test {
 
-// Test to make sure that the
 template <int64_t divisor>
 void test_divisor() {
   // Create a type which uses 1/divisor as a unit of duration,
@@ -58,6 +57,25 @@ void test_divisor() {
             << std::endl;
 }
 
+template <int64_t ntsc_approx_divisor>
+void test_ntsc_approx_divisor() {
+  // Convert one second to flicks
+  constexpr auto flicks_per_second =
+      std::chrono::duration_cast<util::flicks>(std::chrono::seconds{1}).count();
+
+  // NTSC hits 1000 frames every (ntsc_approx_measure * 1001) seconds,
+  // so we test for that exactly.
+  constexpr int64_t units_per_frame =
+      1001 * (flicks_per_second / (ntsc_approx_divisor * 1000));
+  static_assert(((flicks_per_second * 1001) % units_per_frame) == 0,
+                "Flicks derivation failed for ntsc approximate divisor");
+
+  std::cout << "Testing ntsc approx divisor: " << ntsc_approx_divisor
+            << ", flicks per second = " << flicks_per_second
+            << ", flicks per ntsc approx divisor = " << units_per_frame
+            << std::endl;
+}
+
 void test_all_design_divisors() {
   // These are the image-frame-rate measures, all multiplied by 1000 for
   // reasonable room in simulation substeps
@@ -82,6 +100,12 @@ void test_all_design_divisors() {
   test_divisor<88200>();
   test_divisor<96000>();
   test_divisor<192000>();
+
+  // ntsc approximations
+  test_ntsc_approx_divisor<24>();
+  test_ntsc_approx_divisor<30>();
+  test_ntsc_approx_divisor<60>();
+  test_ntsc_approx_divisor<120>();
 }
 
 }  // namespace test
