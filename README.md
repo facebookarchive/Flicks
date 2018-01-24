@@ -18,9 +18,9 @@ They are 8kHz, 16kHz, 22.05kHz, 24kHz, 32kHz, 44.1kHz, 48kHz, 88.2kHz, 96kHz, an
 While humans can't hear higher than 48kHz, the higher sample rates are used for working
 audio files which might later be resampled or retimed.
 
-The NTSC variations (~29.97, etc) are actually defined as 24 * 1000/1001 and 30 * 1000/1001,
-which are impossible to represent exactly in a way where 1 second is exact, so we don't
-bother - they'll be inexact in any circumstance.
+The NTSC variations (~23.976, ~29.97, etc) are actually defined as 24 * 1000/1001 and
+30 * 1000/1001, etc. They can be represented exactly in flicks, but 1/1000 divisions are not
+available.
 
 ## Details
 
@@ -43,6 +43,13 @@ bother - they'll be inexact in any circumstance.
 * 1/88200 fps frame:     8000 flicks
 * 1/96000 fps frame:     7350 flicks
 * 1/192000 fps frame:     3675 flicks
+
+NTSC rates:
+
+* 1001/24000 (~23.976) fps frame:    29429400 flicks
+* 1001/30000 (~29.97) fps frame:     23543520 flicks
+* 1001/60000 (~59.94) fps frame:     11771760 flicks
+* 1001/120000 (~119.88) fps frame:    5885880 flicks
 
 ## Motivation
 
