@@ -60,7 +60,7 @@ and leave it at that!
 * 96000 fps frame:      7350 flicks
 * 192000 fps frame:     3675 flicks
 
-NTSC approximate rates:
+NTSC:
 
 * 24 * 1000/1001 (~23.976) fps frame:    29429400 flicks
 * 30 * 1000/1001 (~29.97)  fps frame:    23543520 flicks
