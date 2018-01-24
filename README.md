@@ -7,11 +7,18 @@ A flick (frame-tick) is a very small unit of time. It is 1/705600000 of a second
 
 This unit of time is the smallest time unit which is LARGER than a nanosecond,
 and can in integer quantities exactly represent a single frame duration for
-24hz, 25hz, 30hz, 48hz, 50hz, 60hz, 90hz, 100hz, 120hz, and also 1/1000 divisions of each.
-This makes it suitable for use via std::chrono::duration and std::ratio for doing timing work
+24 Hz, 25 Hz, 30 Hz, 48 Hz, 50 Hz, 60 Hz, 90 Hz, 100 Hz, 120 Hz, and also 1/1000 divisions of each, 
+as well as a single sample duration for 8 kHz, 16 kHz, 22.05 kHz, 24 kHz, 32 kHz, 44.1 kHz, 
+48 kHz, 88.2 kHz, 96 kHz, and 192kHz, as well as the NTSC approximate frame durations for
+24 * (1000/1001) Hz, 30 * (1000/1001) Hz, 60 * (1000/1001) Hz, and 120 * (1000/1001) Hz.
+
+That above was one hell of a run-on sentence, but it's strictly and completely correct in its 
+description of the unit.
+
+This makes flicks suitable for use via std::chrono::duration and std::ratio for doing timing work
 against the system high resolution clock, which is in nanoseconds, but doesn't get slightly
 out of sync when doing common frame rates.
-
+ 
 We also support some common audio sample rates as well. This list is not exhaustive, but covers 
 the majority of digital audio formats. They are 8kHz, 16kHz, 22.05kHz, 24kHz, 32kHz, 44.1kHz, 
 48kHz, 88.2kHz, 96kHz, and 192kHz.
