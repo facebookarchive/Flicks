@@ -138,7 +138,7 @@ To clean up:
 In a previous work lead by Sorbonne University and the French National Institute of Audiovisual, 
 TimeRefs were defined as 1/14112000s, giving 1 TimeRef=50 Flicks. 
 See Troncy, R., Carrive, J., Lalande, S., Poli, J.-P., "A motivating scenario for designing an extensible 
-audio-visual description language". In CORIMEDIA’04, Sherbrooke, Canada, Octobre 2004
+audio-visual description language". In CORIMEDIA’04, Sherbrooke, Canada, October 2004.
 
 ## License
 
