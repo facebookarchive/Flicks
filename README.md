@@ -49,6 +49,7 @@ and leave it at that!
 * 90 fps frame:      7840000 flicks
 * 100 fps frame:     7056000 flicks
 * 120 fps frame:     5880000 flicks
+* 144 fps frame:     4900000 flicks
 * 8000 fps frame:      88200 flicks
 * 16000 fps frame:     44100 flicks
 * 22050 fps frame:     32000 flicks
