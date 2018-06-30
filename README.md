@@ -93,7 +93,7 @@ in the "util" namespace here, for lack of a clear alternative. It would be nice 
 
 Note that you can just skip all of that and put this directly into your code. 
 
-```
+```cpp
 
 #include <chrono>
 #include <ratio>
